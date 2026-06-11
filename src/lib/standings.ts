@@ -55,9 +55,8 @@ export function computeStandings(
 
   for (const row of rows.values()) row.gd = row.gf - row.ga
 
-  return [...rows.values()].sort(
-    (a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf || a.code.localeCompare(b.code),
-  )
+  // 安定ソートなので同成績はgroupTeams(シード)順を維持
+  return [...rows.values()].sort((a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf)
 }
 
 /** 公式結果とユーザー入力結果をマージ(公式優先) */

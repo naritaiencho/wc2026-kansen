@@ -79,21 +79,21 @@ export function sleepPlanFor(iso: string): { wake: string; sleep: string; advice
   if (h >= 1 && h <= 3) {
     return {
       wake: fmt(wakeMin),
-      sleep: '21:00頃に仮眠開始',
+      sleep: '21:00頃に仮眠',
       advice: '深夜帯キックオフ。21時就寝→試合前に起きる「仮眠作戦」か、いっそ夜更かしで完走するか。翌日に響かせない覚悟を。',
     }
   }
   if (h >= 4 && h <= 6) {
     return {
       wake: fmt(wakeMin),
-      sleep: '21:30〜22:00就寝',
+      sleep: '21:30〜22:00',
       advice: `早朝キックオフ。22時就寝→${fmt(wakeMin)}起床で睡眠6時間確保。観戦後そのまま朝活へ。`,
     }
   }
   if (h >= 7 && h <= 9) {
     return {
       wake: fmt(wakeMin),
-      sleep: '23:00就寝でOK',
+      sleep: '23:00でOK',
       advice: '朝キックオフ。通常の睡眠リズムで観戦可能な神スケジュール。在宅勤務切替やフレックスの検討を。',
     }
   }
