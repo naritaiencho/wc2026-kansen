@@ -26,7 +26,7 @@ export function googleCalendarUrl(match: Match, teamName: (code: string) => stri
     broadcastNote,
     match.highlight ? `\n🔥 見どころ: ${match.highlight}` : '',
     `\n🏟️ ${match.stadium}(${match.city})`,
-    '\n\n— 観戦HQ \'26 で追加',
+    '\n\n— ワールドカップ手帳 \'26 で追加',
   ].join('')
 
   const params = new URLSearchParams({

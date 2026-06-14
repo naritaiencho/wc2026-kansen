@@ -35,9 +35,7 @@ export default function App() {
       </main>
       <footer className="relative z-10 border-t border-white/5 py-10">
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-12">
-          <p className="font-display text-xl tracking-wide">
-            観戦<span className="text-gradient-gold">HQ</span> '26
-          </p>
+          <p className="font-black text-xl tracking-wide text-gradient-gold">W杯手帳 '26</p>
           <p className="mt-2 text-xs leading-relaxed text-foreground/40">
             FIFAワールドカップ2026 観戦コンパニオン — 日時はすべて日本時間(JST)。
             <br />

@@ -29,10 +29,8 @@ export default function Nav({ active, onNavigate }: { active: TabId; onNavigate:
             ⚽
           </span>
           <div className="text-left leading-none">
-            <p className="font-display text-lg tracking-wide">
-              観戦<span className="text-gradient-gold">HQ</span> '26
-            </p>
-            <p className="mt-0.5 text-[9px] font-bold tracking-[0.25em] text-foreground/40">WORLD CUP 2026 JAPAN HQ</p>
+            <p className="font-black text-lg tracking-wide text-gradient-gold">W杯手帳 '26</p>
+            <p className="mt-0.5 text-[9px] font-bold tracking-[0.25em] text-foreground/40">ワールドカップ手帳</p>
           </div>
         </button>
 

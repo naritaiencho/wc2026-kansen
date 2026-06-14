@@ -49,18 +49,27 @@ export default function HomePage({ onNavigate }: { onNavigate: (tab: TabId) => v
             FIFA WORLD CUP 2026 — 6.11 ▶ 7.20
           </p>
           <h1
-            className="font-display text-[44px] uppercase leading-[1.02] sm:text-[64px] md:text-[84px] animate-fade-up"
+            className="font-black text-[44px] leading-[1.04] sm:text-[62px] md:text-[80px] animate-fade-up text-gradient-gold"
             style={{ animationDelay: '150ms' }}
           >
-            <span className="text-gradient-hero">寝不足上等。</span>
-            <br />
-            <span className="text-foreground">
-              全<span className="text-gradient-gold">104</span>試合、見逃すな。
-            </span>
+            W杯手帳 '26
           </h1>
           <p
-            className="animate-fade-up mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-foreground/65 sm:text-base"
+            className="animate-fade-up mt-3 text-[11px] font-bold tracking-[0.25em] text-foreground/55 sm:text-xs"
+            style={{ animationDelay: '250ms' }}
+          >
+            ワールドカップ手帳 — FIFAワールドカップ2026 観戦ガイド
+          </p>
+          <p
+            className="animate-fade-up mt-6 font-display text-2xl leading-tight sm:text-3xl md:text-4xl"
             style={{ animationDelay: '350ms' }}
+          >
+            <span className="text-gradient-hero">寝不足上等。</span>
+            <span className="text-foreground">全<span className="text-gradient-gold">104</span>試合、見逃すな。</span>
+          </p>
+          <p
+            className="animate-fade-up mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-foreground/65 sm:text-base"
+            style={{ animationDelay: '450ms' }}
           >
             史上初の48チーム・3カ国共催ワールドカップを、日本時間で完全攻略。
             放送・配信、見どころ、順位表、得点ランキング、観戦プランまで——観戦のすべてが、ここに。
