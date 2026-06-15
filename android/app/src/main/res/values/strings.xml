@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ワールドカップ手帳</string>
+    <string name="title_activity_main">ワールドカップ手帳</string>
+    <string name="package_name">jp.naritai.wctecho</string>
+    <string name="custom_url_scheme">jp.naritai.wctecho</string>
+</resources>
