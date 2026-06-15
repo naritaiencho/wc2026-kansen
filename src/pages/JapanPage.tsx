@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { AlarmClock, AlertTriangle, CalendarPlus, ChevronRight, Moon, Swords, Trophy } from 'lucide-react'
+import { AlarmClock, AlertTriangle, CalendarPlus, ChevronRight, Moon, Newspaper, Swords, Trophy } from 'lucide-react'
 import {
   japanSquad,
   japanStaff,
@@ -24,7 +24,7 @@ import MatchCard from '../components/MatchCard'
 const POS_LABEL: Record<string, string> = { GK: 'ゴールキーパー', DF: 'ディフェンダー', MF: 'ミッドフィールダー', FW: 'フォワード' }
 
 export default function JapanPage() {
-  const { resultsMap } = useAppState()
+  const { resultsMap, news } = useAppState()
   const [samuraiImgOk, setSamuraiImgOk] = useState(true)
 
   const japanMatches = useMemo(
@@ -93,6 +93,34 @@ export default function JapanPage() {
             <p className="mt-1.5 text-[10px] text-foreground/40">({japanBreaking.date} 時点の公式発表・報道に基づく)</p>
           </div>
         </Reveal>
+
+        {/* ===== 最新ニュース（自動更新） ===== */}
+        {news && news.length > 0 && (
+          <Reveal>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+              <p className="flex items-center gap-2 text-sm font-bold text-gold">
+                <Newspaper size={15} /> 最新ニュース
+                <span className="text-[10px] font-normal text-foreground/40">(ゲキサカ・自動更新)</span>
+              </p>
+              <ul className="mt-3 space-y-2.5">
+                {news.slice(0, 6).map((n) => (
+                  <li key={n.link}>
+                    <a
+                      href={n.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-2 text-xs leading-relaxed text-foreground/75 transition hover:text-gold"
+                    >
+                      <ChevronRight size={13} className="mt-0.5 shrink-0 text-gold/60" />
+                      <span className="flex-1">{n.title}</span>
+                      <span className="shrink-0 text-[10px] text-foreground/30">{n.source}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        )}
 
         {/* ===== japan matches ===== */}
         <section className="py-14">
