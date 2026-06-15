@@ -1,0 +1,45 @@
+name: refresh-data
+
+# W杯2026の結果・得点・ニュースを定期取得し、app形状JSONを「data」ブランチへ公開する。
+# クライアントは raw.githubusercontent の data ブランチを参照（再デプロイ不要）。
+on:
+  schedule:
+    - cron: '*/15 * * * *' # 15分ごと（GitHubの仕様で実際は5〜30分遅延しうる）
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch results & scorers (football-data.org)
+        run: node scripts/fetch-data.mjs
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+
+      - name: Fetch news (RSS)
+        run: node scripts/rss.mjs
+        continue-on-error: true
+
+      # data/ フォルダの中身を data ブランチのルートへ公開（履歴保持・revert可能）。
+      # clean:false → 今回出力に無いファイルは消さない＝失敗系統の前回正データを温存。
+      - name: Publish to data branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: data
+          folder: data
+          clean: false
+          commit-message: 'data refresh'
+          single-commit: false

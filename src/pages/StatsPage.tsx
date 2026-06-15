@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { Crown, Medal, TrendingUp, Zap } from 'lucide-react'
-import { officialScorers } from '../data/results'
 import { goldenBootCandidates, titleOdds, recordsAtStake, youngStars } from '../data/storylines'
 import { allMatches } from '../data/matches'
 import { teamMap, teamName } from '../data/teams'
@@ -10,7 +9,7 @@ import Flag from '../components/Flag'
 import Reveal from '../components/Reveal'
 
 export default function StatsPage() {
-  const { userScorers } = useAppState()
+  const { userScorers, officialScorers } = useAppState()
 
   // 公式得点データ + ユーザー入力の得点メモを統合してランキング化
   const scorerRanking = useMemo(() => {

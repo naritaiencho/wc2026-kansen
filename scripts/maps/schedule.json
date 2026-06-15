@@ -1,0 +1,834 @@
+[
+{
+"id": 1,
+"kickoff": "2026-06-12T04:00:00+09:00",
+"jstDate": "2026-06-12",
+"home": "MEX",
+"away": "RSA",
+"stageOrGroup": "A"
+},
+{
+"id": 2,
+"kickoff": "2026-06-12T11:00:00+09:00",
+"jstDate": "2026-06-12",
+"home": "KOR",
+"away": "CZE",
+"stageOrGroup": "A"
+},
+{
+"id": 3,
+"kickoff": "2026-06-13T04:00:00+09:00",
+"jstDate": "2026-06-13",
+"home": "CAN",
+"away": "BIH",
+"stageOrGroup": "B"
+},
+{
+"id": 4,
+"kickoff": "2026-06-13T10:00:00+09:00",
+"jstDate": "2026-06-13",
+"home": "USA",
+"away": "PAR",
+"stageOrGroup": "D"
+},
+{
+"id": 5,
+"kickoff": "2026-06-14T04:00:00+09:00",
+"jstDate": "2026-06-14",
+"home": "QAT",
+"away": "SUI",
+"stageOrGroup": "B"
+},
+{
+"id": 6,
+"kickoff": "2026-06-14T07:00:00+09:00",
+"jstDate": "2026-06-14",
+"home": "BRA",
+"away": "MAR",
+"stageOrGroup": "C"
+},
+{
+"id": 7,
+"kickoff": "2026-06-14T10:00:00+09:00",
+"jstDate": "2026-06-14",
+"home": "HAI",
+"away": "SCO",
+"stageOrGroup": "C"
+},
+{
+"id": 8,
+"kickoff": "2026-06-14T13:00:00+09:00",
+"jstDate": "2026-06-14",
+"home": "AUS",
+"away": "TUR",
+"stageOrGroup": "D"
+},
+{
+"id": 9,
+"kickoff": "2026-06-15T02:00:00+09:00",
+"jstDate": "2026-06-15",
+"home": "GER",
+"away": "CUW",
+"stageOrGroup": "E"
+},
+{
+"id": 10,
+"kickoff": "2026-06-15T05:00:00+09:00",
+"jstDate": "2026-06-15",
+"home": "NED",
+"away": "JPN",
+"stageOrGroup": "F"
+},
+{
+"id": 11,
+"kickoff": "2026-06-15T08:00:00+09:00",
+"jstDate": "2026-06-15",
+"home": "CIV",
+"away": "ECU",
+"stageOrGroup": "E"
+},
+{
+"id": 12,
+"kickoff": "2026-06-15T11:00:00+09:00",
+"jstDate": "2026-06-15",
+"home": "SWE",
+"away": "TUN",
+"stageOrGroup": "F"
+},
+{
+"id": 13,
+"kickoff": "2026-06-16T01:00:00+09:00",
+"jstDate": "2026-06-16",
+"home": "ESP",
+"away": "CPV",
+"stageOrGroup": "H"
+},
+{
+"id": 14,
+"kickoff": "2026-06-16T04:00:00+09:00",
+"jstDate": "2026-06-16",
+"home": "BEL",
+"away": "EGY",
+"stageOrGroup": "G"
+},
+{
+"id": 15,
+"kickoff": "2026-06-16T07:00:00+09:00",
+"jstDate": "2026-06-16",
+"home": "KSA",
+"away": "URU",
+"stageOrGroup": "H"
+},
+{
+"id": 16,
+"kickoff": "2026-06-16T10:00:00+09:00",
+"jstDate": "2026-06-16",
+"home": "IRN",
+"away": "NZL",
+"stageOrGroup": "G"
+},
+{
+"id": 17,
+"kickoff": "2026-06-17T04:00:00+09:00",
+"jstDate": "2026-06-17",
+"home": "FRA",
+"away": "SEN",
+"stageOrGroup": "I"
+},
+{
+"id": 18,
+"kickoff": "2026-06-17T07:00:00+09:00",
+"jstDate": "2026-06-17",
+"home": "IRQ",
+"away": "NOR",
+"stageOrGroup": "I"
+},
+{
+"id": 19,
+"kickoff": "2026-06-17T10:00:00+09:00",
+"jstDate": "2026-06-17",
+"home": "ARG",
+"away": "ALG",
+"stageOrGroup": "J"
+},
+{
+"id": 20,
+"kickoff": "2026-06-17T13:00:00+09:00",
+"jstDate": "2026-06-17",
+"home": "AUT",
+"away": "JOR",
+"stageOrGroup": "J"
+},
+{
+"id": 21,
+"kickoff": "2026-06-18T02:00:00+09:00",
+"jstDate": "2026-06-18",
+"home": "POR",
+"away": "COD",
+"stageOrGroup": "K"
+},
+{
+"id": 22,
+"kickoff": "2026-06-18T05:00:00+09:00",
+"jstDate": "2026-06-18",
+"home": "ENG",
+"away": "CRO",
+"stageOrGroup": "L"
+},
+{
+"id": 23,
+"kickoff": "2026-06-18T08:00:00+09:00",
+"jstDate": "2026-06-18",
+"home": "GHA",
+"away": "PAN",
+"stageOrGroup": "L"
+},
+{
+"id": 24,
+"kickoff": "2026-06-18T11:00:00+09:00",
+"jstDate": "2026-06-18",
+"home": "UZB",
+"away": "COL",
+"stageOrGroup": "K"
+},
+{
+"id": 25,
+"kickoff": "2026-06-19T01:00:00+09:00",
+"jstDate": "2026-06-19",
+"home": "CZE",
+"away": "RSA",
+"stageOrGroup": "A"
+},
+{
+"id": 26,
+"kickoff": "2026-06-19T04:00:00+09:00",
+"jstDate": "2026-06-19",
+"home": "SUI",
+"away": "BIH",
+"stageOrGroup": "B"
+},
+{
+"id": 27,
+"kickoff": "2026-06-19T07:00:00+09:00",
+"jstDate": "2026-06-19",
+"home": "CAN",
+"away": "QAT",
+"stageOrGroup": "B"
+},
+{
+"id": 28,
+"kickoff": "2026-06-19T10:00:00+09:00",
+"jstDate": "2026-06-19",
+"home": "MEX",
+"away": "KOR",
+"stageOrGroup": "A"
+},
+{
+"id": 29,
+"kickoff": "2026-06-20T04:00:00+09:00",
+"jstDate": "2026-06-20",
+"home": "USA",
+"away": "AUS",
+"stageOrGroup": "D"
+},
+{
+"id": 30,
+"kickoff": "2026-06-20T07:00:00+09:00",
+"jstDate": "2026-06-20",
+"home": "SCO",
+"away": "MAR",
+"stageOrGroup": "C"
+},
+{
+"id": 31,
+"kickoff": "2026-06-20T09:30:00+09:00",
+"jstDate": "2026-06-20",
+"home": "BRA",
+"away": "HAI",
+"stageOrGroup": "C"
+},
+{
+"id": 32,
+"kickoff": "2026-06-20T12:00:00+09:00",
+"jstDate": "2026-06-20",
+"home": "TUR",
+"away": "PAR",
+"stageOrGroup": "D"
+},
+{
+"id": 33,
+"kickoff": "2026-06-21T02:00:00+09:00",
+"jstDate": "2026-06-21",
+"home": "NED",
+"away": "SWE",
+"stageOrGroup": "F"
+},
+{
+"id": 34,
+"kickoff": "2026-06-21T05:00:00+09:00",
+"jstDate": "2026-06-21",
+"home": "GER",
+"away": "CIV",
+"stageOrGroup": "E"
+},
+{
+"id": 35,
+"kickoff": "2026-06-21T09:00:00+09:00",
+"jstDate": "2026-06-21",
+"home": "ECU",
+"away": "CUW",
+"stageOrGroup": "E"
+},
+{
+"id": 36,
+"kickoff": "2026-06-21T13:00:00+09:00",
+"jstDate": "2026-06-21",
+"home": "TUN",
+"away": "JPN",
+"stageOrGroup": "F"
+},
+{
+"id": 37,
+"kickoff": "2026-06-22T01:00:00+09:00",
+"jstDate": "2026-06-22",
+"home": "ESP",
+"away": "KSA",
+"stageOrGroup": "H"
+},
+{
+"id": 38,
+"kickoff": "2026-06-22T04:00:00+09:00",
+"jstDate": "2026-06-22",
+"home": "BEL",
+"away": "IRN",
+"stageOrGroup": "G"
+},
+{
+"id": 39,
+"kickoff": "2026-06-22T07:00:00+09:00",
+"jstDate": "2026-06-22",
+"home": "URU",
+"away": "CPV",
+"stageOrGroup": "H"
+},
+{
+"id": 40,
+"kickoff": "2026-06-22T10:00:00+09:00",
+"jstDate": "2026-06-22",
+"home": "NZL",
+"away": "EGY",
+"stageOrGroup": "G"
+},
+{
+"id": 41,
+"kickoff": "2026-06-23T02:00:00+09:00",
+"jstDate": "2026-06-23",
+"home": "ARG",
+"away": "AUT",
+"stageOrGroup": "J"
+},
+{
+"id": 42,
+"kickoff": "2026-06-23T06:00:00+09:00",
+"jstDate": "2026-06-23",
+"home": "FRA",
+"away": "IRQ",
+"stageOrGroup": "I"
+},
+{
+"id": 43,
+"kickoff": "2026-06-23T09:00:00+09:00",
+"jstDate": "2026-06-23",
+"home": "NOR",
+"away": "SEN",
+"stageOrGroup": "I"
+},
+{
+"id": 44,
+"kickoff": "2026-06-23T12:00:00+09:00",
+"jstDate": "2026-06-23",
+"home": "JOR",
+"away": "ALG",
+"stageOrGroup": "J"
+},
+{
+"id": 45,
+"kickoff": "2026-06-24T02:00:00+09:00",
+"jstDate": "2026-06-24",
+"home": "POR",
+"away": "UZB",
+"stageOrGroup": "K"
+},
+{
+"id": 46,
+"kickoff": "2026-06-24T05:00:00+09:00",
+"jstDate": "2026-06-24",
+"home": "ENG",
+"away": "GHA",
+"stageOrGroup": "L"
+},
+{
+"id": 47,
+"kickoff": "2026-06-24T08:00:00+09:00",
+"jstDate": "2026-06-24",
+"home": "PAN",
+"away": "CRO",
+"stageOrGroup": "L"
+},
+{
+"id": 48,
+"kickoff": "2026-06-24T11:00:00+09:00",
+"jstDate": "2026-06-24",
+"home": "COL",
+"away": "COD",
+"stageOrGroup": "K"
+},
+{
+"id": 49,
+"kickoff": "2026-06-25T04:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "SUI",
+"away": "CAN",
+"stageOrGroup": "B"
+},
+{
+"id": 50,
+"kickoff": "2026-06-25T04:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "BIH",
+"away": "QAT",
+"stageOrGroup": "B"
+},
+{
+"id": 51,
+"kickoff": "2026-06-25T07:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "SCO",
+"away": "BRA",
+"stageOrGroup": "C"
+},
+{
+"id": 52,
+"kickoff": "2026-06-25T07:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "MAR",
+"away": "HAI",
+"stageOrGroup": "C"
+},
+{
+"id": 53,
+"kickoff": "2026-06-25T10:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "CZE",
+"away": "MEX",
+"stageOrGroup": "A"
+},
+{
+"id": 54,
+"kickoff": "2026-06-25T10:00:00+09:00",
+"jstDate": "2026-06-25",
+"home": "RSA",
+"away": "KOR",
+"stageOrGroup": "A"
+},
+{
+"id": 55,
+"kickoff": "2026-06-26T05:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "CUW",
+"away": "CIV",
+"stageOrGroup": "E"
+},
+{
+"id": 56,
+"kickoff": "2026-06-26T05:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "ECU",
+"away": "GER",
+"stageOrGroup": "E"
+},
+{
+"id": 57,
+"kickoff": "2026-06-26T08:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "JPN",
+"away": "SWE",
+"stageOrGroup": "F"
+},
+{
+"id": 58,
+"kickoff": "2026-06-26T08:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "TUN",
+"away": "NED",
+"stageOrGroup": "F"
+},
+{
+"id": 59,
+"kickoff": "2026-06-26T11:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "TUR",
+"away": "USA",
+"stageOrGroup": "D"
+},
+{
+"id": 60,
+"kickoff": "2026-06-26T11:00:00+09:00",
+"jstDate": "2026-06-26",
+"home": "PAR",
+"away": "AUS",
+"stageOrGroup": "D"
+},
+{
+"id": 61,
+"kickoff": "2026-06-27T04:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "NOR",
+"away": "FRA",
+"stageOrGroup": "I"
+},
+{
+"id": 62,
+"kickoff": "2026-06-27T04:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "SEN",
+"away": "IRQ",
+"stageOrGroup": "I"
+},
+{
+"id": 63,
+"kickoff": "2026-06-27T09:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "CPV",
+"away": "KSA",
+"stageOrGroup": "H"
+},
+{
+"id": 64,
+"kickoff": "2026-06-27T09:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "URU",
+"away": "ESP",
+"stageOrGroup": "H"
+},
+{
+"id": 65,
+"kickoff": "2026-06-27T12:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "EGY",
+"away": "IRN",
+"stageOrGroup": "G"
+},
+{
+"id": 66,
+"kickoff": "2026-06-27T12:00:00+09:00",
+"jstDate": "2026-06-27",
+"home": "NZL",
+"away": "BEL",
+"stageOrGroup": "G"
+},
+{
+"id": 67,
+"kickoff": "2026-06-28T06:00:00+09:00",
+"jstDate": "2026-06-28",
+"home": "PAN",
+"away": "ENG",
+"stageOrGroup": "L"
+},
+{
+"id": 68,
+"kickoff": "2026-06-28T06:00:00+09:00",
+"jstDate": "2026-06-28",
+"home": "CRO",
+"away": "GHA",
+"stageOrGroup": "L"
+},
+{
+"id": 69,
+"kickoff": "2026-06-28T08:30:00+09:00",
+"jstDate": "2026-06-28",
+"home": "COL",
+"away": "POR",
+"stageOrGroup": "K"
+},
+{
+"id": 70,
+"kickoff": "2026-06-28T08:30:00+09:00",
+"jstDate": "2026-06-28",
+"home": "COD",
+"away": "UZB",
+"stageOrGroup": "K"
+},
+{
+"id": 71,
+"kickoff": "2026-06-28T11:00:00+09:00",
+"jstDate": "2026-06-28",
+"home": "ALG",
+"away": "AUT",
+"stageOrGroup": "J"
+},
+{
+"id": 72,
+"kickoff": "2026-06-28T11:00:00+09:00",
+"jstDate": "2026-06-28",
+"home": "JOR",
+"away": "ARG",
+"stageOrGroup": "J"
+},
+{
+"id": 73,
+"kickoff": "2026-06-29T04:00:00+09:00",
+"jstDate": "2026-06-29",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 74,
+"kickoff": "2026-06-30T02:00:00+09:00",
+"jstDate": "2026-06-30",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 75,
+"kickoff": "2026-06-30T05:30:00+09:00",
+"jstDate": "2026-06-30",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 76,
+"kickoff": "2026-06-30T10:00:00+09:00",
+"jstDate": "2026-06-30",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 77,
+"kickoff": "2026-07-01T02:00:00+09:00",
+"jstDate": "2026-07-01",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 78,
+"kickoff": "2026-07-01T06:00:00+09:00",
+"jstDate": "2026-07-01",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 79,
+"kickoff": "2026-07-01T10:00:00+09:00",
+"jstDate": "2026-07-01",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 80,
+"kickoff": "2026-07-02T01:00:00+09:00",
+"jstDate": "2026-07-02",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 81,
+"kickoff": "2026-07-02T05:00:00+09:00",
+"jstDate": "2026-07-02",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 82,
+"kickoff": "2026-07-02T09:00:00+09:00",
+"jstDate": "2026-07-02",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 83,
+"kickoff": "2026-07-03T04:00:00+09:00",
+"jstDate": "2026-07-03",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 84,
+"kickoff": "2026-07-03T08:00:00+09:00",
+"jstDate": "2026-07-03",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 85,
+"kickoff": "2026-07-03T12:00:00+09:00",
+"jstDate": "2026-07-03",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 86,
+"kickoff": "2026-07-04T03:00:00+09:00",
+"jstDate": "2026-07-04",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 87,
+"kickoff": "2026-07-04T07:00:00+09:00",
+"jstDate": "2026-07-04",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 88,
+"kickoff": "2026-07-04T10:30:00+09:00",
+"jstDate": "2026-07-04",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r32"
+},
+{
+"id": 89,
+"kickoff": "2026-07-05T02:00:00+09:00",
+"jstDate": "2026-07-05",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 90,
+"kickoff": "2026-07-05T06:00:00+09:00",
+"jstDate": "2026-07-05",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 91,
+"kickoff": "2026-07-06T05:00:00+09:00",
+"jstDate": "2026-07-06",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 92,
+"kickoff": "2026-07-06T09:00:00+09:00",
+"jstDate": "2026-07-06",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 93,
+"kickoff": "2026-07-07T04:00:00+09:00",
+"jstDate": "2026-07-07",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 94,
+"kickoff": "2026-07-07T09:00:00+09:00",
+"jstDate": "2026-07-07",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 95,
+"kickoff": "2026-07-08T01:00:00+09:00",
+"jstDate": "2026-07-08",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 96,
+"kickoff": "2026-07-08T05:00:00+09:00",
+"jstDate": "2026-07-08",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "r16"
+},
+{
+"id": 97,
+"kickoff": "2026-07-10T05:00:00+09:00",
+"jstDate": "2026-07-10",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "qf"
+},
+{
+"id": 98,
+"kickoff": "2026-07-11T04:00:00+09:00",
+"jstDate": "2026-07-11",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "qf"
+},
+{
+"id": 99,
+"kickoff": "2026-07-12T06:00:00+09:00",
+"jstDate": "2026-07-12",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "qf"
+},
+{
+"id": 100,
+"kickoff": "2026-07-12T10:00:00+09:00",
+"jstDate": "2026-07-12",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "qf"
+},
+{
+"id": 101,
+"kickoff": "2026-07-15T04:00:00+09:00",
+"jstDate": "2026-07-15",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "sf"
+},
+{
+"id": 102,
+"kickoff": "2026-07-16T04:00:00+09:00",
+"jstDate": "2026-07-16",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "sf"
+},
+{
+"id": 103,
+"kickoff": "2026-07-19T06:00:00+09:00",
+"jstDate": "2026-07-19",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "third"
+},
+{
+"id": 104,
+"kickoff": "2026-07-20T04:00:00+09:00",
+"jstDate": "2026-07-20",
+"home": "未定",
+"away": "未定",
+"stageOrGroup": "final"
+}
+]

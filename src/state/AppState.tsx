@@ -1,8 +1,10 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react'
-import type { MatchResult } from '../data/types'
-import { officialResults } from '../data/results'
+import type { MatchResult, ScorerEntry } from '../data/types'
+import { officialResults, officialScorers as seedScorers } from '../data/results'
 import { storage } from '../lib/storage'
 import { mergeResults } from '../lib/standings'
+import { useRemoteData } from '../hooks/useRemoteData'
+import { remoteData, type NewsItem } from '../lib/remoteData'
 
 interface AppStateValue {
   favTeams: string[]
@@ -11,6 +13,8 @@ interface AppStateValue {
   userResults: MatchResult[]
   userScorers: Record<number, string>
   resultsMap: Map<number, MatchResult>
+  officialScorers: ScorerEntry[]
+  news: NewsItem[] | null
   toggleFavTeam: (code: string) => void
   toggleBookmark: (matchId: number) => void
   setPrediction: (matchId: number, value: 'home' | 'draw' | 'away' | null) => void
@@ -83,7 +87,15 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
-  const resultsMap = useMemo(() => mergeResults(officialResults, userResults), [userResults])
+  // 公式データのランタイム取得（dataブランチJSON）。取れなければビルド時staticにフォールバック。
+  const remoteResults = useRemoteData(remoteData.results)
+  const remoteScorers = useRemoteData(remoteData.scorers)
+  const news = useRemoteData(remoteData.news)
+  const resultsMap = useMemo(
+    () => mergeResults(remoteResults ?? officialResults, userResults),
+    [remoteResults, userResults],
+  )
+  const officialScorers = remoteScorers ?? seedScorers
 
   const value = useMemo(
     () => ({
@@ -93,13 +105,15 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       userResults,
       userScorers,
       resultsMap,
+      officialScorers,
+      news,
       toggleFavTeam,
       toggleBookmark,
       setPrediction,
       saveUserResult,
       removeUserResult,
     }),
-    [favTeams, bookmarks, predictions, userResults, userScorers, resultsMap, toggleFavTeam, toggleBookmark, setPrediction, saveUserResult, removeUserResult],
+    [favTeams, bookmarks, predictions, userResults, userScorers, resultsMap, officialScorers, news, toggleFavTeam, toggleBookmark, setPrediction, saveUserResult, removeUserResult],
   )
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>

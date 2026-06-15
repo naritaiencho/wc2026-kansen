@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# 自動取得スクリプトの作業出力（本番データは data ブランチ。public/data はフォールバック用スナップショット）
+/data/
