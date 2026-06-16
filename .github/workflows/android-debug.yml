@@ -1,17 +1,10 @@
 name: Build Android Debug APK
 
 # 静的WebアプリをCapacitorで包んだAndroid APK(デバッグ版)をクラウドでビルドする。
-# ローカルにAndroid SDKを入れずに、ここでAPKを生成→Artifactとしてダウンロードできる。
+# 開発中の動作確認用。配布用の署名済みAPKは android-release.yml を使う。
+# 手動実行のみ(毎pushでのビルドはしない)。
 on:
   workflow_dispatch: {}
-  push:
-    branches: [master]
-    paths:
-      - 'android/**'
-      - 'capacitor.config.ts'
-      - 'src/**'
-      - 'public/**'
-      - '.github/workflows/android-debug.yml'
 
 jobs:
   build:

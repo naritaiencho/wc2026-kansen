@@ -16,10 +16,26 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        release {
+            // CIでは Secret から復元したキーストアのパスを ANDROID_KEYSTORE_FILE で渡す。
+            // 環境変数が無いローカルビルドでは未設定のまま（= release は無署名になるだけで壊れない）。
+            def ksPath = System.getenv("ANDROID_KEYSTORE_FILE")
+            if (ksPath != null && file(ksPath).exists()) {
+                storeFile file(ksPath)
+                storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("ANDROID_KEY_ALIAS")
+                keyPassword System.getenv("ANDROID_KEY_PASSWORD")
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (System.getenv("ANDROID_KEYSTORE_FILE") != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }
