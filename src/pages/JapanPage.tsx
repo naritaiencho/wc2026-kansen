@@ -220,7 +220,7 @@ export default function JapanPage() {
                 </tbody>
               </table>
               <p className="mt-2 px-3 text-[11px] text-foreground/35">
-                ※ 各組上位2+12組の3位のうち上位8チームが突破。結果はマイ観戦タブから入力すると即反映。
+                ※ 各組上位2+12組の3位のうち上位8チームが突破。結果は公式データから自動で反映されます。
               </p>
             </div>
           </Reveal>

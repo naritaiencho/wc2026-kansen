@@ -59,7 +59,7 @@ export default function StatsPage() {
                 <p className="text-3xl">⚽</p>
                 <p className="mt-2 text-sm font-bold text-foreground/70">大会は開幕したばかり</p>
                 <p className="mt-1.5 text-xs leading-relaxed text-foreground/50">
-                  ゴールが生まれ次第ここに反映されます。「マイ観戦」タブで試合結果と得点者を入力すると、自動でランキングが組み上がります。
+                  ゴールが生まれ次第、公式記録から自動でここに反映され、ランキングが組み上がっていきます。
                 </p>
               </div>
             ) : (
@@ -211,7 +211,7 @@ export default function StatsPage() {
       </div>
 
       <p className="mt-10 text-xs text-foreground/35">
-        ※ オッズ・成績は2026年6月時点の海外報道(RotoWire, BetMGM, ESPN等)に基づく参考値。得点ランキングは公式記録の更新+ユーザー入力で随時反映されます。
+        ※ オッズ・成績は2026年6月時点の海外報道(RotoWire, BetMGM, ESPN等)に基づく参考値。得点ランキングは公式記録から随時自動更新されます。
       </p>
     </div>
   )

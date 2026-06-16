@@ -178,7 +178,7 @@ export default function GroupsPage() {
       </div>
 
       <p className="mt-8 text-xs text-foreground/35">
-        ※ 順位表は公式結果+「マイ観戦」タブで入力した結果から自動計算。並びは勝ち点→得失点差→総得点。
+        ※ 順位表は公式結果から自動で計算・更新されます。並びは勝ち点→得失点差→総得点。
       </p>
 
       {selected && <TeamModal team={selected} onClose={() => setSelected(null)} />}
