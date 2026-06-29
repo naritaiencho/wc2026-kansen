@@ -24,12 +24,16 @@ import MatchCard from '../components/MatchCard'
 const POS_LABEL: Record<string, string> = { GK: 'ゴールキーパー', DF: 'ディフェンダー', MF: 'ミッドフィールダー', FW: 'フォワード' }
 
 export default function JapanPage() {
-  const { resultsMap, news } = useAppState()
+  const { resultsMap, news, bracket } = useAppState()
   const [samuraiImgOk, setSamuraiImgOk] = useState(true)
 
+  // 決勝Tの「未定」枠はbracketで実チームに解決してから日本戦を抽出（勝ち上がり後の日本戦も拾う）
   const japanMatches = useMemo(
-    () => allMatches.filter((m) => m.home === 'JPN' || m.away === 'JPN'),
-    [],
+    () =>
+      allMatches
+        .map((m) => (bracket?.[m.id] ? { ...m, home: bracket[m.id].home, away: bracket[m.id].away } : m))
+        .filter((m) => m.home === 'JPN' || m.away === 'JPN'),
+    [bracket],
   )
   const nextMatch = japanMatches.find((m) => new Date(m.kickoff).getTime() > Date.now())
 

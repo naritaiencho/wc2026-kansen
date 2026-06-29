@@ -19,7 +19,7 @@ const stageTabs: { id: StageFilter; label: string }[] = [
 ]
 
 export default function MatchesPage() {
-  const { bookmarks, favTeams } = useAppState()
+  const { bookmarks, favTeams, bracket } = useAppState()
   const [stage, setStage] = useState<StageFilter>('all')
   const [group, setGroup] = useState<string>('all')
   const [team, setTeam] = useState<string>('all')
@@ -29,7 +29,11 @@ export default function MatchesPage() {
   const [favOnly, setFavOnly] = useState(false)
 
   const filtered = useMemo(() => {
-    return allMatches.filter((m) => {
+    // 決勝Tの「未定」枠はbracketで実チームに解決してからフィルタ（チーム/日本/推し絞り込みを効かせる）
+    const source = bracket
+      ? allMatches.map((m) => (bracket[m.id] ? { ...m, home: bracket[m.id].home, away: bracket[m.id].away } : m))
+      : allMatches
+    return source.filter((m) => {
       if (stage === 'gs1' && !(m.stage === 'group' && m.id <= 24)) return false
       if (stage === 'gs2' && !(m.stage === 'group' && m.id > 24 && m.id <= 48)) return false
       if (stage === 'gs3' && !(m.stage === 'group' && m.id > 48 && m.id <= 72)) return false
@@ -42,7 +46,7 @@ export default function MatchesPage() {
       if (favOnly && favTeams.length > 0 && !favTeams.includes(m.home) && !favTeams.includes(m.away)) return false
       return true
     })
-  }, [stage, group, team, broadcast, japanOnly, bookmarkedOnly, favOnly, bookmarks, favTeams])
+  }, [stage, group, team, broadcast, japanOnly, bookmarkedOnly, favOnly, bookmarks, favTeams, bracket])
 
   // group matches by JST date
   const byDate = useMemo(() => {
