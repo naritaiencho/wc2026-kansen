@@ -10,7 +10,7 @@ import {
   japanHistory,
   breakthroughScenarios,
 } from '../data/japan'
-import { allMatches, groupMatches } from '../data/matches'
+import { allMatches, groupMatches, stageLabels } from '../data/matches'
 import { teamsByGroup, teamName, teamMap } from '../data/teams'
 import { computeStandings } from '../lib/standings'
 import { googleCalendarUrl } from '../lib/calendar'
@@ -36,6 +36,12 @@ export default function JapanPage() {
     [bracket],
   )
   const nextMatch = japanMatches.find((m) => new Date(m.kickoff).getTime() > Date.now())
+
+  // 決勝Tの日本戦（bracket確定後に現れる。勝ち進むほど増える）
+  const japanKnockoutMatches = useMemo(
+    () => japanMatches.filter((m) => m.stage !== 'group').sort((a, b) => a.kickoff.localeCompare(b.kickoff)),
+    [japanMatches],
+  )
 
   const groupF = teamsByGroup('F')
   const standings = computeStandings(
@@ -124,6 +130,49 @@ export default function JapanPage() {
               </ul>
             </div>
           </Reveal>
+        )}
+
+        {/* ===== japan knockout (決勝T) ===== */}
+        {japanKnockoutMatches.length > 0 && (
+          <section className="pt-14">
+            <Reveal>
+              <h2 className="font-display text-3xl uppercase tracking-wide">
+                <span className="text-gradient-gold">決勝トーナメント</span> — ここからは一発勝負
+              </h2>
+              <p className="mt-2 text-sm text-foreground/55">
+                グループF突破🎉 ノックアウトの戦いも<span className="font-bold text-pitch">DAZN無料配信</span>+地上波(日本が勝ち進む限り全試合)。
+              </p>
+            </Reveal>
+            <div className="mt-8 space-y-10">
+              {japanKnockoutMatches.map((match, i) => {
+                const sleep = sleepPlanFor(match.kickoff)
+                const oppName = teamName(match.home === 'JPN' ? match.away : match.home)
+                return (
+                  <Reveal key={match.id} delay={i * 100}>
+                    <div className="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+                      <MatchCard match={match} />
+                      <div className="liquid-glass rounded-2xl p-5">
+                        <p className="flex items-center gap-2 text-sm font-bold text-gold">
+                          <Trophy size={15} /> {stageLabels[match.stage]} — vs {oppName}
+                        </p>
+                        <p className="mt-3 text-xs leading-relaxed text-foreground/70">
+                          グループステージを勝ち上がって掴んだ{stageLabels[match.stage]}。負ければ終わりの一発勝負、{oppName}との大一番です。
+                        </p>
+                        <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/5">
+                          <Moon size={14} className="text-gold" />
+                          <span className="text-xs font-bold text-foreground/80">観戦睡眠プラン:</span>
+                          <span className="text-xs text-foreground/60">
+                            {sleep.sleep} → <AlarmClock size={12} className="inline text-pitch" /> {sleep.wake}起床。{sleep.advice}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-[11px] font-bold text-foreground/45">📺 日本戦はDAZN無料配信+地上波(NHK)</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                )
+              })}
+            </div>
+          </section>
         )}
 
         {/* ===== japan matches ===== */}
@@ -228,22 +277,24 @@ export default function JapanPage() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={150}>
-            <div className="mt-6 grid gap-3 md:grid-cols-2">
-              {breakthroughScenarios.map((s) => (
-                <div key={s} className="rounded-xl bg-white/[0.03] p-4 text-xs leading-relaxed text-foreground/65 ring-1 ring-white/5">
-                  {s}
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          {japanKnockoutMatches.length === 0 && (
+            <Reveal delay={150}>
+              <div className="mt-6 grid gap-3 md:grid-cols-2">
+                {breakthroughScenarios.map((s) => (
+                  <div key={s} className="rounded-xl bg-white/[0.03] p-4 text-xs leading-relaxed text-foreground/65 ring-1 ring-white/5">
+                    {s}
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          )}
         </section>
 
         {/* ===== opponents ===== */}
         <section className="pb-14">
           <Reveal>
             <h2 className="font-display text-3xl uppercase tracking-wide">
-              対戦相手<span className="text-gradient-gold">スカウティング</span>
+グループの対戦相手<span className="text-gradient-gold">スカウティング</span>
             </h2>
           </Reveal>
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
