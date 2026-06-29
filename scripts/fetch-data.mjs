@@ -1,5 +1,9 @@
-// football-data.org から W杯2026 の結果・得点を取得し、アプリ形状のJSON(MatchResult[]/ScorerEntry[])に
+// football-data.org から W杯2026 の結果・得点・決勝T組み合わせを取得し、アプリ形状のJSONに
 // 変換して data/ に書き出す。順位はクライアント側の computeStandings が結果から計算するため取得しない。
+//
+// グループ(1-72): matches.ts と同じ「日付+チームペア」で固定スロットへ。
+// 決勝T(73-104): matches.ts が「未定」なので、APIのキックオフ時刻でスロットへマッピングし、
+//   対戦カード(bracket.json) と スコア(results.json) を自動生成する。勝ち上がり確定のたびに自動で埋まる。
 // 使い方: FOOTBALL_DATA_TOKEN=xxx node scripts/fetch-data.mjs
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
@@ -33,43 +37,57 @@ async function api(path) {
 
 async function main() {
   const schedule = JSON.parse(await readFile(join(ROOT, 'scripts/maps/schedule.json'), 'utf-8'))
-  // (jstDate|sortedPair) -> 日程スロット。決勝T('未定')は除外（チーム確定後に別途対応）。
-  const index = new Map()
+  // グループ: (jstDate|sortedPair) -> スロット。決勝T(未定)はキックオフ時刻インデックスへ。
+  const groupIndex = new Map()
+  const koByEpoch = new Map() // 決勝T枠: キックオフUTCエポック -> スロット
   for (const m of schedule) {
-    if (m.home === '未定' || m.away === '未定') continue
-    index.set(`${m.jstDate}|${[m.home, m.away].sort().join('-')}`, m)
+    if (m.home === '未定' || m.away === '未定') {
+      koByEpoch.set(Date.parse(m.kickoff), m)
+    } else {
+      groupIndex.set(`${m.jstDate}|${[m.home, m.away].sort().join('-')}`, m)
+    }
   }
 
   const meta = { updatedAt: new Date().toISOString(), source: 'football-data.org', degraded: [], unmapped: [] }
 
-  // --- 結果 (MatchResult[]) ---
+  // --- 結果(MatchResult[]) + 決勝T組み合わせ(bracket) ---
   let results = []
+  let bracket = {} // matchId -> { home, away }
   try {
     const data = await api('/competitions/WC/matches')
     for (const fm of data.matches || []) {
-      const ft = fm.score && fm.score.fullTime
-      if (!ft || typeof ft.home !== 'number' || typeof ft.away !== 'number') continue // 未消化はスキップ
       const h = code(fm.homeTeam && fm.homeTeam.tla)
       const a = code(fm.awayTeam && fm.awayTeam.tla)
-      if (!h || !a) continue
-      const slot = index.get(`${jstDate(fm.utcDate)}|${[h, a].sort().join('-')}`)
-      if (!slot) {
-        meta.unmapped.push(`${jstDate(fm.utcDate)} ${h}-${a}`)
+      const ft = fm.score && fm.score.fullTime
+      const hasScore = ft && typeof ft.home === 'number' && typeof ft.away === 'number'
+
+      // 1) まずグループ枠（日付+チームペア）を試す。ステージ文字列に依存しない判定。
+      if (h && a && hasScore) {
+        const gslot = groupIndex.get(`${jstDate(fm.utcDate)}|${[h, a].sort().join('-')}`)
+        if (gslot) {
+          const swap = gslot.home !== h // アプリのhome/awayと逆ならスコアも入替
+          results.push({ matchId: gslot.id, homeScore: swap ? ft.away : ft.home, awayScore: swap ? ft.home : ft.away })
+          continue
+        }
+      }
+
+      // 2) 決勝T枠（キックオフ時刻で73-104へ）。チーム確定次第 bracket に、消化済みなら results にも。
+      const kslot = koByEpoch.get(Date.parse(fm.utcDate))
+      if (kslot) {
+        if (h && a) bracket[kslot.id] = { home: h, away: a }
+        if (hasScore && h && a) results.push({ matchId: kslot.id, homeScore: ft.home, awayScore: ft.away })
         continue
       }
-      const swap = slot.home !== h // アプリのhome/awayと逆ならスコアも入替
-      results.push({
-        matchId: slot.id,
-        homeScore: swap ? ft.away : ft.home,
-        awayScore: swap ? ft.home : ft.away,
-      })
+
+      // 3) どちらにも該当しない（時刻ズレ等）。診断用に記録するだけで、推測マッピングはしない。
+      if (h && a) meta.unmapped.push(`${fm.stage || '?'}|${jstDate(fm.utcDate)}|${h}-${a}|${hasScore ? `${ft.home}-${ft.away}` : 'TBD'}`)
     }
     results.sort((x, y) => x.matchId - y.matchId)
   } catch (e) {
     meta.degraded.push(`matches:${e.message}`)
   }
 
-  // --- 得点 (ScorerEntry[])。無料枠はアシスト無し → assists:0（既存の空状態UIが出る） ---
+  // --- 得点(ScorerEntry[])。大会通算なので決勝Tの得点も自動で含まれる。無料枠はアシスト無し → assists:0 ---
   let scorers = []
   try {
     const data = await api('/competitions/WC/scorers?limit=100')
@@ -90,13 +108,17 @@ async function main() {
   await mkdir(join(ROOT, 'data'), { recursive: true })
   if (!meta.degraded.some((d) => d.startsWith('matches'))) {
     await writeFile(join(ROOT, 'data/results.json'), JSON.stringify(results), 'utf-8')
+    await writeFile(join(ROOT, 'data/bracket.json'), JSON.stringify(bracket), 'utf-8')
   }
   if (!meta.degraded.some((d) => d.startsWith('scorers'))) {
     await writeFile(join(ROOT, 'data/scorers.json'), JSON.stringify(scorers), 'utf-8')
   }
   await writeFile(join(ROOT, 'data/meta.json'), JSON.stringify(meta), 'utf-8')
 
-  console.log(`results=${results.length} scorers=${scorers.length} unmapped=${meta.unmapped.length} degraded=${JSON.stringify(meta.degraded)}`)
+  console.log(
+    `results=${results.length} bracket=${Object.keys(bracket).length} scorers=${scorers.length} ` +
+      `unmapped=${meta.unmapped.length} degraded=${JSON.stringify(meta.degraded)}`,
+  )
   if (meta.unmapped.length) console.log('UNMAPPED:', meta.unmapped)
 }
 

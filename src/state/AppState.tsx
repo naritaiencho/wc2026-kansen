@@ -4,7 +4,7 @@ import { officialResults, officialScorers as seedScorers } from '../data/results
 import { storage } from '../lib/storage'
 import { mergeResults } from '../lib/standings'
 import { useRemoteData } from '../hooks/useRemoteData'
-import { remoteData, type NewsItem } from '../lib/remoteData'
+import { remoteData, type NewsItem, type BracketMap } from '../lib/remoteData'
 
 interface AppStateValue {
   favTeams: string[]
@@ -15,6 +15,7 @@ interface AppStateValue {
   resultsMap: Map<number, MatchResult>
   officialScorers: ScorerEntry[]
   news: NewsItem[] | null
+  bracket: BracketMap | null
   toggleFavTeam: (code: string) => void
   toggleBookmark: (matchId: number) => void
   setPrediction: (matchId: number, value: 'home' | 'draw' | 'away' | null) => void
@@ -91,6 +92,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const remoteResults = useRemoteData(remoteData.results)
   const remoteScorers = useRemoteData(remoteData.scorers)
   const news = useRemoteData(remoteData.news)
+  const bracket = useRemoteData(remoteData.bracket)
   const resultsMap = useMemo(
     () => mergeResults(remoteResults ?? officialResults, userResults),
     [remoteResults, userResults],
@@ -107,13 +109,14 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       resultsMap,
       officialScorers,
       news,
+      bracket,
       toggleFavTeam,
       toggleBookmark,
       setPrediction,
       saveUserResult,
       removeUserResult,
     }),
-    [favTeams, bookmarks, predictions, userResults, userScorers, resultsMap, officialScorers, news, toggleFavTeam, toggleBookmark, setPrediction, saveUserResult, removeUserResult],
+    [favTeams, bookmarks, predictions, userResults, userScorers, resultsMap, officialScorers, news, bracket, toggleFavTeam, toggleBookmark, setPrediction, saveUserResult, removeUserResult],
   )
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>

@@ -29,9 +29,13 @@ function TeamSide({ code, align }: { code: string; align: 'left' | 'right' }) {
   )
 }
 
-export default function MatchCard({ match }: { match: Match }) {
-  const { bookmarks, toggleBookmark, predictions, setPrediction, resultsMap } = useAppState()
+export default function MatchCard({ match: rawMatch }: { match: Match }) {
+  const { bookmarks, toggleBookmark, predictions, setPrediction, resultsMap, bracket } = useAppState()
   const [open, setOpen] = useState(false)
+
+  // 決勝Tの「未定」枠は、CIが取得した対戦カード(bracket)で実チームに差し替える（確定次第ライブ反映）
+  const ov = bracket?.[rawMatch.id]
+  const match = ov ? { ...rawMatch, home: ov.home, away: ov.away } : rawMatch
 
   const result = resultsMap.get(match.id)
   const live = isLive(match.kickoff)

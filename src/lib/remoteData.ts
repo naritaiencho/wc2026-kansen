@@ -12,6 +12,11 @@ export interface NewsItem {
   source: string
 }
 
+// 決勝T(73-104)の対戦カード。勝ち上がり確定のたびにCIが更新する。
+// matchId -> { home, away }(FIFAコード)。matches.ts の「未定」をランタイムで上書きする。
+export type BracketMap = Record<number, { home: string; away: string }>
+
+
 // dataブランチ(コミットで即更新・再デプロイ不要・CORS:* / 5分CDN)を最優先、
 // 次に Vercel が配信する /data(ビルドに同梱された場合のフォールバック)。
 const SOURCES = [
@@ -68,8 +73,25 @@ function isNewsArray(v: unknown): v is NewsItem[] {
   )
 }
 
+function isBracket(v: unknown): v is BracketMap {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return false
+  return Object.entries(v as Record<string, unknown>).every(([k, val]) => {
+    const id = Number(k)
+    return (
+      Number.isInteger(id) &&
+      id >= 73 &&
+      id <= 104 &&
+      !!val &&
+      typeof val === 'object' &&
+      typeof (val as { home?: unknown }).home === 'string' &&
+      typeof (val as { away?: unknown }).away === 'string'
+    )
+  })
+}
+
 export const remoteData = {
   results: () => fetchFirst('results.json', isResultArray),
   scorers: () => fetchFirst('scorers.json', isScorerArray),
   news: () => fetchFirst('news.json', isNewsArray),
+  bracket: () => fetchFirst('bracket.json', isBracket),
 }
