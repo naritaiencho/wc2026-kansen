@@ -37,12 +37,12 @@ function TeamRow({ code, score, win, dim }: { code: string; score?: number; win:
 
 function BracketCell({ match, result, big }: { match: Match; result?: MatchResult; big?: boolean }) {
   const decided = result !== undefined
-  // 勝者: APIのwinner(PK決着含む)優先、無ければスコア比較
-  const winner: 'home' | 'away' | null = result?.winner ?? (decided ? (result!.homeScore > result!.awayScore ? 'home' : result!.awayScore > result!.homeScore ? 'away' : null) : null)
+  // 勝者判定: APIのwinner → PKスコア → 正規スコア の順
+  let winner: 'home' | 'away' | null = result?.winner ?? null
+  if (!winner && result?.pens) winner = result.pens.home > result.pens.away ? 'home' : 'away'
+  if (!winner && decided) winner = result!.homeScore > result!.awayScore ? 'home' : result!.awayScore > result!.homeScore ? 'away' : null
   const homeWin = winner === 'home'
   const awayWin = winner === 'away'
-  // 引き分けスコアなのに勝者がいる = PK決着
-  const isPk = decided && result!.homeScore === result!.awayScore && winner !== null
   const isJapan = match.home === 'JPN' || match.away === 'JPN'
   return (
     <div
@@ -52,7 +52,9 @@ function BracketCell({ match, result, big }: { match: Match; result?: MatchResul
     >
       <div className="mb-1 flex items-center justify-between">
         <span className="text-[9px] font-bold tracking-wider text-foreground/35">{formatDateOnly(match.kickoff)}</span>
-        {isPk && <span className="rounded bg-gold/15 px-1.5 text-[8px] font-bold tracking-wider text-gold">PK</span>}
+        {result?.pens && (
+          <span className="rounded bg-gold/15 px-1.5 text-[8px] font-bold tracking-wider text-gold">PK {result.pens.home}-{result.pens.away}</span>
+        )}
       </div>
       <TeamRow code={match.home} score={decided ? result!.homeScore : undefined} win={homeWin} dim={awayWin} />
       <div className="my-1 h-px bg-white/5" />

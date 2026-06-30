@@ -42,10 +42,13 @@ export interface Team {
 
 export interface MatchResult {
   matchId: number
+  /** 正規時間(延長含む)のスコア。PK戦のスコアは含めない。 */
   homeScore: number
   awayScore: number
   /** 決勝Tのみ: 勝者(PK決着含む)。グループ戦では未設定。 */
   winner?: 'home' | 'away'
+  /** PK戦のスコア(あれば)。正規スコアとは分けて表示する。 */
+  pens?: { home: number; away: number }
   note?: string
 }
 

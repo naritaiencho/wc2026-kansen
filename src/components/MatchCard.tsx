@@ -85,9 +85,16 @@ export default function MatchCard({ match: rawMatch }: { match: Match }) {
         <TeamSide code={match.home} align="left" />
         <div className="flex flex-col items-center px-1">
           {result ? (
-            <span className="font-display text-2xl tracking-widest text-gradient-gold sm:text-3xl">
-              {result.homeScore}–{result.awayScore}
-            </span>
+            <>
+              <span className="font-display text-2xl tracking-widest text-gradient-gold sm:text-3xl">
+                {result.homeScore}–{result.awayScore}
+              </span>
+              {result.pens && (
+                <span className="mt-0.5 whitespace-nowrap text-[10px] font-bold tracking-wider text-gold/80">
+                  PK {result.pens.home}-{result.pens.away}
+                </span>
+              )}
+            </>
           ) : (
             <span className="font-display text-lg tracking-widest text-foreground/35">VS</span>
           )}

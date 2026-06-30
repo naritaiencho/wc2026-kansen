@@ -76,9 +76,19 @@ async function main() {
       if (kslot) {
         if (h && a) bracket[kslot.id] = { home: h, away: a }
         if (hasScore && h && a) {
-          // 勝者(PK決着含む)。引き分けスコアでもPK勝者を拾えるよう score.winner を使う。
+          // football-data の fullTime はPK戦のスコアを加算して返す(正規1-1 + PK3-4 → fullTime 4-5)。
+          // PKがあれば fullTime から引いて「正規時間スコア」に戻し、PKは別フィールドで持つ。
           const w = fm.score && fm.score.winner
+          const pens = fm.score && fm.score.penalties
           const entry = { matchId: kslot.id, homeScore: ft.home, awayScore: ft.away }
+          if (pens && typeof pens.home === 'number' && typeof pens.away === 'number') {
+            entry.pens = { home: pens.home, away: pens.away }
+            // fullTimeにPK分が含まれている場合のみ差し引く(負にならない範囲で)
+            if (ft.home >= pens.home && ft.away >= pens.away) {
+              entry.homeScore = ft.home - pens.home
+              entry.awayScore = ft.away - pens.away
+            }
+          }
           if (w === 'HOME_TEAM') entry.winner = 'home'
           else if (w === 'AWAY_TEAM') entry.winner = 'away'
           results.push(entry)
