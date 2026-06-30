@@ -92,6 +92,9 @@ async function main() {
           if (w === 'HOME_TEAM') entry.winner = 'home'
           else if (w === 'AWAY_TEAM') entry.winner = 'away'
           results.push(entry)
+          // DEBUG(一時): 決勝Tの生スコア構造を確認するためダンプ
+          meta.debug = meta.debug || []
+          meta.debug.push({ id: kslot.id, raw: fm.score })
         }
         continue
       }
