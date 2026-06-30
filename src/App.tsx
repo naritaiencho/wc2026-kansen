@@ -4,13 +4,14 @@ import AuroraBackground from './components/AuroraBackground'
 import Nav from './components/Nav'
 import HomePage from './pages/HomePage'
 import MatchesPage from './pages/MatchesPage'
+import BracketPage from './pages/BracketPage'
 import JapanPage from './pages/JapanPage'
 import GroupsPage from './pages/GroupsPage'
 import StatsPage from './pages/StatsPage'
 import WatchPage from './pages/WatchPage'
 import MyPage from './pages/MyPage'
 
-export type TabId = 'home' | 'matches' | 'japan' | 'groups' | 'stats' | 'watch' | 'my'
+export type TabId = 'home' | 'matches' | 'bracket' | 'japan' | 'groups' | 'stats' | 'watch' | 'my'
 
 export default function App() {
   const [tab, setTab] = useState<TabId>('home')
@@ -27,6 +28,7 @@ export default function App() {
       <main className="relative z-10 pt-16">
         {tab === 'home' && <HomePage onNavigate={navigate} />}
         {tab === 'matches' && <MatchesPage />}
+        {tab === 'bracket' && <BracketPage />}
         {tab === 'japan' && <JapanPage />}
         {tab === 'groups' && <GroupsPage />}
         {tab === 'stats' && <StatsPage />}

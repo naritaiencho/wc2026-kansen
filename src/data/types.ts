@@ -44,6 +44,8 @@ export interface MatchResult {
   matchId: number
   homeScore: number
   awayScore: number
+  /** 決勝Tのみ: 勝者(PK決着含む)。グループ戦では未設定。 */
+  winner?: 'home' | 'away'
   note?: string
 }
 

@@ -75,7 +75,14 @@ async function main() {
       const kslot = koByEpoch.get(Date.parse(fm.utcDate))
       if (kslot) {
         if (h && a) bracket[kslot.id] = { home: h, away: a }
-        if (hasScore && h && a) results.push({ matchId: kslot.id, homeScore: ft.home, awayScore: ft.away })
+        if (hasScore && h && a) {
+          // 勝者(PK決着含む)。引き分けスコアでもPK勝者を拾えるよう score.winner を使う。
+          const w = fm.score && fm.score.winner
+          const entry = { matchId: kslot.id, homeScore: ft.home, awayScore: ft.away }
+          if (w === 'HOME_TEAM') entry.winner = 'home'
+          else if (w === 'AWAY_TEAM') entry.winner = 'away'
+          results.push(entry)
+        }
         continue
       }
 

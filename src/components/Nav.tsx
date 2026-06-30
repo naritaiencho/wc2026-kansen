@@ -5,6 +5,7 @@ import type { TabId } from '../App'
 const tabs: { id: TabId; label: string; emoji: string }[] = [
   { id: 'home', label: 'ホーム', emoji: '🏠' },
   { id: 'matches', label: '試合日程', emoji: '📅' },
+  { id: 'bracket', label: '決勝T表', emoji: '🏆' },
   { id: 'japan', label: '日本代表', emoji: '🇯🇵' },
   { id: 'groups', label: '組&チーム', emoji: '🌍' },
   { id: 'stats', label: 'ランキング', emoji: '👑' },
