@@ -76,25 +76,25 @@ async function main() {
       if (kslot) {
         if (h && a) bracket[kslot.id] = { home: h, away: a }
         if (hasScore && h && a) {
-          // football-data の fullTime はPK戦のスコアを加算して返す(正規1-1 + PK3-4 → fullTime 4-5)。
-          // PKがあれば fullTime から引いて「正規時間スコア」に戻し、PKは別フィールドで持つ。
-          const w = fm.score && fm.score.winner
-          const pens = fm.score && fm.score.penalties
-          const entry = { matchId: kslot.id, homeScore: ft.home, awayScore: ft.away }
-          if (pens && typeof pens.home === 'number' && typeof pens.away === 'number') {
-            entry.pens = { home: pens.home, away: pens.away }
-            // fullTimeにPK分が含まれている場合のみ差し引く(負にならない範囲で)
-            if (ft.home >= pens.home && ft.away >= pens.away) {
-              entry.homeScore = ft.home - pens.home
-              entry.awayScore = ft.away - pens.away
-            }
+          // 表示スコアは「正規時間(+延長)」。PK戦の fullTime はPK分が加算されるので、
+          // regularTime(+extraTime) を使って正規スコアに分離する。PKは別フィールド。
+          const sc = fm.score || {}
+          let hs = ft.home
+          let as = ft.away
+          if (sc.duration === 'PENALTY_SHOOTOUT' && sc.regularTime) {
+            const et = sc.extraTime || { home: 0, away: 0 }
+            hs = sc.regularTime.home + (et.home || 0)
+            as = sc.regularTime.away + (et.away || 0)
           }
-          if (w === 'HOME_TEAM') entry.winner = 'home'
-          else if (w === 'AWAY_TEAM') entry.winner = 'away'
+          const entry = { matchId: kslot.id, homeScore: hs, awayScore: as }
+          // PKは「決着済み(同点でない)」場合のみ採用（未確定の4-4等の不正値を弾く）
+          const p = sc.penalties
+          if (p && typeof p.home === 'number' && typeof p.away === 'number' && p.home !== p.away) {
+            entry.pens = { home: p.home, away: p.away }
+          }
+          if (sc.winner === 'HOME_TEAM') entry.winner = 'home'
+          else if (sc.winner === 'AWAY_TEAM') entry.winner = 'away'
           results.push(entry)
-          // DEBUG(一時): 決勝Tの生スコア構造を確認するためダンプ
-          meta.debug = meta.debug || []
-          meta.debug.push({ id: kslot.id, raw: fm.score })
         }
         continue
       }
